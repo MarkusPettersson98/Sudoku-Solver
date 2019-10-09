@@ -81,7 +81,8 @@ isValidElement (Just n) | n `elem` [1..9] = True
                         | otherwise = False
 
 isValidElementProps :: Int -> Bool
-isValidElementProps n = isValidElement (Just n) == ((1 <= n) && (n <= 9))
+isValidElementProps n = isValidElement (Just n) == n `between` (1,9)
+  where between x (y,z) = (y <= x) && (x <= z)
 
 -- A3
 
