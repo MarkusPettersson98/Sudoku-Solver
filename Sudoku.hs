@@ -113,9 +113,11 @@ printCell (Just n)  = show n
 -- Read a Sudoku from a file. Expect the file to be correctly formatted.
 readSudoku :: FilePath -> IO Sudoku
 readSudoku name = do file     <- readFile name
-                     let rows = lines file
+                     let rows = (filterWhiteSpace . lines) file
                      let sud  = map digitsToMaybeInt rows
                      return (Sudoku sud)
+  where
+    filterWhiteSpace = map (filter (not . isSpace))
 
 digitsToMaybeInt :: String -> [Maybe Int]
 digitsToMaybeInt = map digitToMaybeInt
