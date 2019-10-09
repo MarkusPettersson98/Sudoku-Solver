@@ -239,10 +239,8 @@ posNothing p s = isNothing (s !! fst p !! snd p)
 -- meaning we are 1 step closer to the actual index.
 -- 2. When index is zero we add the new value to the list and prepend entire first part of list to second part.
 -- Edge case is: If we reached the end of the list, check that index is 0, if so insert newvalue.
-(!!=) :: [a] -> (Int, a) -> [a]
-(!!=) [] _ = []
-(!!=) [x] (index, newValue) | index == 0 = [newValue]
-                            | otherwise = [x]
+(!!=) :: [a] -> (Int,a) -> [a]
+(!!=) [] (_,x) = [x]
 (!!=) (_:xs) (0, newValue) = newValue : xs -- Since x is to be replaced, just trash it
 (!!=) (x:xs) (index, newValue) = x : xs !!= (index-1, newValue)
 
