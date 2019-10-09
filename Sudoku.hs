@@ -114,14 +114,13 @@ printCell (Just n)  = show n
 readSudoku :: FilePath -> IO Sudoku
 readSudoku name = do file     <- readFile name
                      let rows = lines file
-                     let sud  = map digitsToInt' rows
+                     let sud  = map digitsToMaybeInt rows
                      return (Sudoku sud)
 
-digitsToInt' :: [Char] -> [Maybe Int]
-digitsToInt' [] = error "digitsToInt': Empty String"
-digitsToInt' [x] | x == '.' = [Nothing]
-                 | otherwise = [Just (digitToInt x)]
-digitsToInt' (x:xs) = digitsToInt' [x] ++ digitsToInt' xs
+digitsToMaybeInt :: String -> [Maybe Int]
+digitsToMaybeInt = map digitToMaybeInt
+  where digitToMaybeInt '.' = Nothing
+        digitToMaybeInt  x  = Just (digitToInt x)
 
 
 -- C1
