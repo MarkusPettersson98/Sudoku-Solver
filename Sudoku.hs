@@ -106,15 +106,15 @@ printRow = concatMap printCell
 
 -- Function formats a Maybe Int to desired output String
 printCell :: Maybe Int -> String
-printCell Nothing = "."
-printCell (Just n) = show n
+printCell Nothing   = "."
+printCell (Just n)  = show n
 
 -- B2
 -- Read a Sudoku from a file. Expect the file to be correctly formatted.
 readSudoku :: FilePath -> IO Sudoku
-readSudoku name = do file <- readFile name
+readSudoku name = do file     <- readFile name
                      let rows = lines file
-                     let sud = map digitsToInt' rows
+                     let sud  = map digitsToInt' rows
                      return (Sudoku sud)
 
 digitsToInt' :: [Char] -> [Maybe Int]
