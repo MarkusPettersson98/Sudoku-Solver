@@ -47,12 +47,16 @@ example2 =
 
 -- Functions which returns a 9x9 sudoku filled with Nothing
 allBlankSudoku :: Sudoku
-allBlankSudoku = Sudoku [ x | _ <- [1..9], let x = allBlankList 9]
+allBlankSudoku = Sudoku (replicate rows blankRow)
+    where
+      columns   = 9
+      rows      = 9
+      blankRow  = allBlankList columns
 
 
--- Function which creates a list of given length
-allBlankList :: Integer -> [Maybe Int]
-allBlankList len = [ Nothing | _ <- [1..len]]
+-- Function which creates a list of Nothing of given length
+allBlankList :: Int -> [Maybe Int]
+allBlankList = flip replicate Nothing
 
 -- A2
 -- Function which checks if a soduku has 9 rows and 9 columns
