@@ -152,8 +152,7 @@ type Block = [Maybe Int]
 
 -- Function which transposes all the cells in a Sudoku
 transposeSudoku :: Sudoku -> Sudoku
-transposeSudoku s = Sudoku (transpose allrows)
-  where allrows = rows s
+transposeSudoku = Sudoku . transpose . rows
 
 -- Function which removes cells with Nothing from a Block.
 trim :: Block -> Block
