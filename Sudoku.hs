@@ -157,9 +157,7 @@ transposeSudoku s = Sudoku (transpose allrows)
 
 -- Function which removes cells with Nothing from a Block.
 trim :: Block -> Block
-trim [x] | isNothing x = []
-         | otherwise = [x]
-trim (x:xs) = trim [x] ++ trim xs
+trim = filter isJust
 
 -- Function which checks for duplicates in a Block (excluding Nothing).
 isOkayBlock :: Block -> Bool
