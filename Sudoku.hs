@@ -96,8 +96,8 @@ hasBlankElement = foldr (or . isNothing) False
 
 -- B1
 -- Given a Sudoku, print each row seperated by new line characters.
-printSudoku :: Sudoku -> IO ()
-printSudoku sudoku = putStr $ unlines $ map printRow formattedSudoku
+printSudoku :: Sudoku -> String
+printSudoku sudoku = unlines $ map printRow formattedSudoku
   where formattedSudoku = rows sudoku
 
 -- Function which applies printCell to an entire list
@@ -344,14 +344,14 @@ isSolvedBlock b = isOkayBlock b && (length (trim b) == 9)
 
 
 -- F2
-
-readAndSolve :: FilePath -> IO()
+{-
+readAndSolve :: FilePath -> Maybe String
 readAndSolve file = do sud <- readSudoku file
                        let solved = (solve sud)
                        if(not (isNothing solved))
                          then printSudoku (fromJust solved)
                        else putStrLn "Error solving Sudoku: Nothing"
-
+-}
                        
 -- Given two sudokus, compares all the elements. 
 -- All the elements in an unfinished sudoku should be the same in finished sudoku
