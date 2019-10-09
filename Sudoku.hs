@@ -102,8 +102,7 @@ printSudoku sudoku = putStr $ unlines $ map printRow formattedSudoku
 
 -- Function which applies printCell to an entire list
 printRow :: [Maybe Int] -> String
-printRow [x]    = printCell x
-printRow (x:xs) = printCell x ++ printRow xs
+printRow = concatMap printCell
 
 -- Function formats a Maybe Int to desired output String
 printCell :: Maybe Int -> String
