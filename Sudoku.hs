@@ -87,9 +87,7 @@ isValidElementProps n = isValidElement (Just n) == n `between` (1,9)
 -- A3
 
 isFilled :: Sudoku -> Bool
-isFilled = not
-           . all hasBlankElement
-           . rows
+isFilled = not . all hasBlankElement . rows
 
 -- Function returns true if an element is Empty within a list
 hasBlankElement :: [Maybe Int] -> Bool
